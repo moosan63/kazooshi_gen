@@ -26,17 +26,19 @@ end
 post '/create' do
 end
 
+#画像を2枚重ね合わせるメソッド
 private
-def composite
-    resultFileName = "./images/result.png"
+def composite(src_file_name, result_file_name)
+    resultFileName = "./images/"+file_name
 
     result = Image.from_blob(File.read("./images/kazoo_origin_bg.png")).shift.resize(128,128)
-    img = Image.from_blob(File.read("./images/quco.png")).shift.resize(128,128)
+    img = Image.from_blob(File.read("./images/"+src_file_name)).shift.resize(128,128)
     result = result.composite(img, 0, 0, OverCompositeOp)
 
     result.write(resultFileName)
 end
 
+#連続投稿を防ぐためのトークンを作成する
 private
 def create_token
     token =''
