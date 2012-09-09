@@ -1,0 +1,49 @@
+.left{ 
+    float:left;
+ }
+.right{ 
+    float:right;
+ }
+.clearfix{ 
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;""
+ }
+html,body{ 
+    height:100%;
+}
+body{ 
+    background: url('../images/bg.png');
+}
+div#content{ 
+    padding:10px;
+    margin: 20px auto;
+    background:white;
+
+    width:911px;
+    height:560px;
+    /* 角丸 */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    /* ボックスシャドウ */
+    -moz-box-shadow: 0px 0px 8px #000;
+    -webkit-box-shadow: 0px 0px 8px #000;
+}
+div#header{ 
+    width:911px;
+    height:150px;
+    background:gray;
+}
+div#header div#h-left{ 
+    width:50%;
+    height:150px;
+ }
+div#header div#h-right{ 
+    width:50%;
+    height:150px;
+    background:blue;
+ }
+div#header div#h-right{ 
+ }
