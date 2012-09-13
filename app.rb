@@ -7,13 +7,14 @@ include Magick
 
 #== sinatra session
 enable :sessions
-use Rack::Session::Cookie,
-#:key => 'rack.session',
-#:domain => 'foo.com',
-#:path => '/',
-:expire_after => 3600,
-:secret => 'change'
-
+configure do
+    use Rack::Session::Cookie,
+    #:key => 'rack.session',
+    #:domain => 'foo.com',
+    #:path => '/',
+    :expire_after => 3600,
+    :secret => 'change'
+end
 ####################
 #   sinatraな部分  #
 #################### 
@@ -25,6 +26,9 @@ get '/' do
 end
 
 post '/create' do
+    #csrf対策
+    if params["token"] == session[:token]
+    end
 end
 
 #画像を2枚重ね合わせるメソッド

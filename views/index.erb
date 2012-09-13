@@ -4,21 +4,66 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
+    <!--
 	<script type="text/javascript" src=""></script>
+    -->
 	<title>かずー氏アイコンジェネレーター</title>
   </head>
   <body>
     <div id="content">
       <div id="header">
-        <div id="h-left" class="left"></div>
+
+        <div id="h-left" class="left">
+          <div id="title-left" class="left">
+            <img src="images/kazoo_origin.png" class="kazoo_icon" >
+          </div><!-- /#title-left -->
+          <div id="title-right" class="left">
+            <h1 id="upper">かずー氏アイコン<br/> ジェネレーター</h1>
+          </div><!-- /#title-right -->
+        </div><!-- /#h-left-->
+
         <div id="h-right" class="left">
           <ul>
-            <li>使い方</li>
-            <li>よくある質問</li>
-            <li>作者</li>
+            <li class="left"><a href="#">使い方</a></li>
+            <li class="left"><a href="#">よくある質問</a></li>
+            <li class="left"><a href="#">その他</a></li>
           </ul>
+        </div><!-- /#h-right -->
+      </div><!-- /#header -->
+      
+      <div id="manual" class="clearfix">
+
+        <div id="m-left" class="m left">
+          <h2>STEP:1</h2>
+          <p>透過PNG画像を用意してください。</p>
+          <img src="images/quco.png" class="auto">
         </div>
-      </div>
-    </div>
+
+        <div id="m-center" class="m left">
+          <h2>STEP:2</h2>
+          <p>ジェネレータで背景とくっつけます。</p>          
+          <div class="clearfix">
+            <div class="left adjust"><img src="images/quco.png" class="auto"></div>
+            <div class="left adjust"><img src="images/kazoo_origin_bg.png" class="auto"></div>
+          </div>
+          <p class="compo">Combine!</p>
+        </div>
+
+        <div id="m-right" class="m left">
+          <h2>STEP:3</h2>
+          <p>かずー氏アイコンのできあがり！</p>
+          <img src="images/result.png" class="auto">
+
+        </div>
+      </div><!--/#manual -->
+
+      <div id="form">
+        <form method="post" action="create" id="commentForm" class="cmxform">
+          <input type="file" name="file" size="30">
+          <input id="ctoken" type="hidden" name="token" value="<%= @token %>">
+          <button id="submit_button" class="submit" type="">作成</button>
+        </form>
+      </div><!--/#form -->
+    </div><!-- /#content -->
   </body>
 </html>
