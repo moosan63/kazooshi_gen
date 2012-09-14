@@ -1,0 +1,13 @@
+# spce/spec_helper.rb
+require 'rack/test'
+
+module MyTestMethods
+    def app
+        Sinatra::Application
+    end
+end
+
+Spec::Runner.configure do |config|
+    config.include Rack::Test::Methods
+    config.include MyTestMethods
+end
