@@ -19,6 +19,7 @@ end
 ####################
 #   sinatraな部分  #
 #################### 
+STORE_DIR = File.dirname(File.dirname(__FILE__)).to_s + "/kazooshi_gen/public/images/store/"
 
 get '/' do
   @token = create_token()
@@ -28,20 +29,36 @@ end
 
 post '/create' do
     #csrf対策
-    if params["token"] == session[:token]
+    if (params["token"] == session[:token]) && params[:file]
+        #アップロードされたファイルをまず保存
+        begin
+            save_file = STORE_DIR+File.extname(params[:file][:filename])
+            File.open(save_file, 'wb'){ |f| f.write(params[:file][:tempfile].read) }
+        rescue
+            puts "file write error"
+            return 
+        end
+        #合成
+        composite(save_file, params["token"])
     end
 end
 
 #画像を2枚重ね合わせるメソッド
 private
 def composite(src_file_name, result_file_name)
-    resultFileName = "./images/"+file_name
+    begin
+        resultFileName = STORE_DIR + result_file_name
+        
+        result = Image.from_blob(File.read(STORE_DIR+"../kazoo_origin_bg.png")).shift.resize(128,128)
+        img = Image.from_blob(File.read(src_file_name)).shift.resize(128,128)
+        result = result.composite(img, 0, 0, OverCompositeOp)
 
-    result = Image.from_blob(File.read("./images/kazoo_origin_bg.png")).shift.resize(128,128)
-    img = Image.from_blob(File.read("./images/"+src_file_name)).shift.resize(128,128)
-    result = result.composite(img, 0, 0, OverCompositeOp)
-
-    result.write(resultFileName)
+        result.write(resultFileName+".png")
+        return true
+    rescue
+        puts "file composite error"
+        return false
+    end
 end
 
 #連続投稿を防ぐためのトークンを作成する
