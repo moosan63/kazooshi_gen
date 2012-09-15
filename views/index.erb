@@ -11,7 +11,13 @@
     <script type="text/javascript" src="./js/jquery.upload-1.0.2.min.js"></script>
     <!-- fancybox -->
     
-
+    <script>
+      $('input[type=file]').click(function() {
+        $(this).upload('/create', function(res) {
+          alert('File uploaded');
+          }, 'json');
+      });      
+    </script>
     
 	<title>かずー氏アイコンジェネレーター</title>
   </head>

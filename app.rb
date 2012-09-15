@@ -39,25 +39,30 @@ post '/create' do
             return 
         end
         #合成
-        composite(save_file, params["token"])
+        @image = composite(save_file, params["token"])
+        @msg = ""
+    else
+        @msg = "hoge"
+        @image = ""
     end
+    erb :create
 end
 
 #画像を2枚重ね合わせるメソッド
 private
 def composite(src_file_name, result_file_name)
     begin
-        resultFileName = STORE_DIR + result_file_name
+        resultFileName = STORE_DIR + result_file_name + ".png"
         
         result = Image.from_blob(File.read(STORE_DIR+"../kazoo_origin_bg.png")).shift.resize(128,128)
         img = Image.from_blob(File.read(src_file_name)).shift.resize(128,128)
         result = result.composite(img, 0, 0, OverCompositeOp)
-
-        result.write(resultFileName+".png")
-        return true
+        
+        result.write(resultFileName)
+        return "images/store/"+result_file_name+".png"
     rescue
         puts "file composite error"
-        return false
+        return ""
     end
 end
 
