@@ -23,4 +23,5 @@ describe 'POST /create' do
     it 'statusコードは200である' do
         last_response.ok?.should be_true
     end
+
 end

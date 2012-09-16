@@ -6,19 +6,7 @@
     <!-- stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./css/reset.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
-    <!-- javascripts -->
-	<script type="text/javascript" src="./js/jquery-1.8.0.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.upload-1.0.2.min.js"></script>
-    <!-- fancybox -->
-    
-    <script>
-      $('input[type=file]').click(function() {
-        $(this).upload('/create', function(res) {
-          alert('File uploaded');
-          }, 'json');
-      });      
-    </script>
-    
+        
 	<title>かずー氏アイコンジェネレーター</title>
   </head>
   <body>
@@ -36,9 +24,9 @@
 
         <div id="h-right" class="left">
           <ul>
-            <li class="left"><a href="#">使い方</a></li>
-            <li class="left"><a href="#">よくある質問</a></li>
-            <li class="left"><a href="#">その他</a></li>
+            <li class="left"><a href="#howto" class="fancybox">使い方</a></li>
+            <li class="left"><a href="#faq" class="fancybox">よくある質問</a></li>
+            <li class="left"><a href="#other" class="fancybox">その他</a></li>
           </ul>
         </div><!-- /#h-right -->
       </div><!-- /#header -->
@@ -70,12 +58,69 @@
       </div><!--/#manual -->
 
       <div id="form">
-        <form method="post" enctype="multipart/form-data" action="create" id="file" class="cmxform">
+        <form method="post" enctype="multipart/form-data" action="/create" id="uploader" target="ajaxPostImage">
           <input type="file" name="file" size="30">
           <input id="ctoken" type="hidden" name="token" value="<%= @token %>">
-          <button id="submit_button" class="submit" type="">作成</button>
+          <button id="submit_button" class="submit" type="submit">作成</button>
         </form>
       </div><!--/#form -->
     </div><!-- /#content -->
+    <!-- For ajax file upload -->
+    <iframe name="ajaxPostImage" id="ajaxPostImage" style="display:none;"></iframe>
+    <div id="howto" class="popup" style="display:none">
+      <h2>使い方</h2>
+      <ol>
+        <li>ページ下部の「ファイルを選択」から、かずー氏アイコンにしたい画像を選んでください。</li>
+        <li>ファイルを選んだら「作成」ボタンを押してください。</li>
+      </ol>
+    </div>
+
+    <div id="faq" class="popup" style="display:none">
+      <h2>よくある質問</h2>
+      <dl>
+        <dt>かずー氏って？</dt>
+        <dd><a href="http://twitter.com/kazoo04">三(^o^)ノ わたしがかずー氏だ。(twitter)</a></dd>
+      </dl>     
+    </div>
+
+    <div id="other" class="popup" style="display:none">
+      <h2>その他</h2>
+    </div>
   </body>
+
+  <!-- javascripts -->
+  <script src="./fancybox/lib/jquery-1.8.0.min.js"></script>
+  <!-- fancybox -->
+  <script type="text/javascript" src="./fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+  <link rel="stylesheet" href="./fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+  <script type="text/javascript" src="./fancybox/source/jquery.fancybox.pack.js?v=2.1.0"></script>
+
+  <script>
+  var $form, $iframe, $trigger;
+
+  $form = $('#uploader');
+
+  $trigger = $('#submit_button');
+
+  $iframe = $('iframe[name="ajaxPostImage"]');
+
+  $trigger.click(function() {
+    $form.submit();
+    return false;
+  });
+
+  $form.submit(function() {
+    $iframe.unbind().bind('load', function() {
+      var response;
+      response = $iframe.contents().find("#upimg");
+      console.log(response);
+    });
+  });
+
+  //fancybox
+  $(document).ready(function() {
+    $(".fancybox").fancybox();
+  });
+  </script>
+
 </html>

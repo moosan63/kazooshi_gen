@@ -28,6 +28,7 @@ get '/' do
 end
 
 post '/create' do
+
     #csrf対策
     if (params["token"] == session[:token]) && params[:file]
         #アップロードされたファイルをまず保存
