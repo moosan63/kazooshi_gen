@@ -12,6 +12,11 @@
   clear: both;
   visibility: hidden; }
 
+#imglink {
+  display: none;
+  color: black;
+  text-decoration: none; }
+
 html, body {
   height: 100%; }
 
@@ -69,6 +74,7 @@ div#content {
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px; }
       div#content div#header div#h-left div#title-right {
+        margin-left: -30px;
         width: 355px;
         height: 140px; }
         div#content div#header div#h-left div#title-right h1#upper {
@@ -77,7 +83,7 @@ div#content {
           font-size: 28pt;
           text-align: center;
           color: red;
-          text-shadow: 1px 1px 1px orange;
+          text-shadow: 1px 1px 0px yellow;
           border-bottom: 3px solid orange; }
     div#content div#header div#h-right {
       width: 455px;

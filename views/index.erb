@@ -99,9 +99,7 @@
   var $form, $iframe, $trigger;
 
   $form = $('#uploader');
-
   $trigger = $('#submit_button');
-
   $iframe = $('iframe[name="ajaxPostImage"]');
 
   $trigger.click(function() {
@@ -112,8 +110,9 @@
   $form.submit(function() {
     $iframe.unbind().bind('load', function() {
       var response;
-      response = $iframe.contents().find("#upimg");
-      console.log(response);
+      response = $iframe.contents().find("#imglink");
+      $("body").append(response);
+      $(response).trigger("click");
     });
   });
 

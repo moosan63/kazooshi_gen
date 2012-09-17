@@ -43,7 +43,7 @@ post '/create' do
         @image = composite(save_file, params["token"])
         @msg = ""
     else
-        @msg = "hoge"
+        @msg = "select your image file!"
         @image = ""
     end
     erb :create
@@ -55,8 +55,8 @@ def composite(src_file_name, result_file_name)
     begin
         resultFileName = STORE_DIR + result_file_name + ".png"
         
-        result = Image.from_blob(File.read(STORE_DIR+"../kazoo_origin_bg.png")).shift.resize(128,128)
-        img = Image.from_blob(File.read(src_file_name)).shift.resize(128,128)
+        result = Image.from_blob(File.read(STORE_DIR+"../kazoo_origin_bg.png")).shift.resize(256,256)
+        img = Image.from_blob(File.read(src_file_name)).shift.resize(256,256)
         result = result.composite(img, 0, 0, OverCompositeOp)
         
         result.write(resultFileName)
