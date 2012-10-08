@@ -1,2 +1,2 @@
 gem 'sinatra'
-gem 'RMagick'
+gem 'rmagick'
