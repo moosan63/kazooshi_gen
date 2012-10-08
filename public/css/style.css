@@ -170,7 +170,7 @@ div#content {
     height: 150px; }
     div#content #form form {
       display: block;
-      height: 120px;
+      height: 100px;
       padding-top: 30px; }
       div#content #form form input {
         display: block;
@@ -180,6 +180,8 @@ div#content {
         width: 310px;
         height: 30px;
         margin-bottom: 10px; }
+    div#content #form p {
+      height: 20px; }
 
 /* #content end*/
 /* 

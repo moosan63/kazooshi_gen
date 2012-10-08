@@ -217,7 +217,7 @@ div#content{
         
         form{
             display:block;
-            height:120px;
+            height:100px;
             padding-top:30px;
             input{
                 display:block;
@@ -229,6 +229,9 @@ div#content{
                 height:30px;
                 margin-bottom:10px;
             }
+        }
+        p{
+           height:20px;
         }
     }
 }/* #content end*/
