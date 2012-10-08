@@ -216,11 +216,27 @@ div.popup {
   width: 580px;
   padding: 10px;
   font-size: 10pt; }
+  div.popup a {
+    color: blue; }
+  div.popup a:hover {
+    color: pink; }
   div.popup h2 {
     font-size: 16pt;
     color: #43cf65;
     border-bottom: dotted 2px #43cf65;
     margin-bottom: 10px; }
+  div.popup h3 {
+    font-size: 13pt;
+    height: 30px; }
   div.popup ol {
     display: block;
-    list-style-type: circle; }
+    list-style-type: circle;
+    font-size: 10pt; }
+    div.popup ol li {
+      height: 1.5em; }
+  div.popup dl dt {
+    font-size: 12pt;
+    height: 25px; }
+  div.popup dl dd {
+    font-size: 12pt;
+    height: 25px; }
