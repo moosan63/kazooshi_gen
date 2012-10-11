@@ -51,7 +51,7 @@ describe 'create_token()' do
 end
 
 describe 'composite(src,dst)' do
-    STORE_DIR = File.dirname(File.dirname(__FILE__)).to_s + "/spec/images/"
+    STORE_DIR = File.dirname(__FILE__).to_s + "/images/"
     def composite(src_file_name, result_file_name)
         begin
             resultFileName = STORE_DIR + result_file_name + ".png"

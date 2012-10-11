@@ -19,7 +19,7 @@ end
 ####################
 #   sinatraな部分  #
 #################### 
-STORE_DIR = File.dirname(File.dirname(__FILE__)).to_s + "/kazooshi_gen/public/images/store/"
+STORE_DIR = File.dirname(__FILE__).to_s + "/public/images/store/"
 
 get '/' do
   @token = create_token()
